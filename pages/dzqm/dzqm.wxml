@@ -1,0 +1,12 @@
+<view class="row-wrapper">
+  <view class="column-container">
+    <view class="gray-bg round-rect rotate-90" style="margin-bottom: 160rpx;" catchtap="cleardraw">重置</view>
+    <view class="pink-bg round-rect margin-top-30 rotate-90" catchtap="submit">提交</view>
+  </view>
+  <view class="paint-board">
+    <text class="placeholder-tips rotate-90" wx:if="{{!isDrawing}}">请手写签名</text>
+    <canvas class="paint-board-canvas" disable-scroll="true" canvas-id="board" bindtouchstart="startDraw"
+      bindtouchmove="onDraw" bindtouchcancel="endDraw"></canvas>
+  </view>
+  <canvas class="tmp-canvas" canvas-id="tmp_board" disable-scroll="true"></canvas>
+</view>

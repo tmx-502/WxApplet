@@ -1,0 +1,37 @@
+<!--test/test.wxml-->
+<view class="wrap">
+  <text class="title">制动台测速板Ⅱ进货检验记录表</text>
+  <view class="Tab_header">
+    <view> <text>检验依据</text><input id="jyyj" /></view>
+    <view> <text>检验日期</text><input id="=jyrq" /></view>
+    <view> <text>供货单位</text><input id="ghdw" /></view>
+    <view> <text>采购员</text><input id="cgy" /></view>
+    <view> <text>检验数量</text><input id="jysl" type="number" /></view>
+    <view> <text>合格数量</text><input id="hgsl" type="number" /></view>
+  </view>
+  <view class="Tab_content">
+    <view class="cpwg">产品外观
+      <image class=""></image>
+    </view>
+    <view class="wgItems" wx:for="{{cpwgList}}" wx:key="{{item.id}}">
+      <view class="condition">{{item.cpwg}}</view>
+      <view class="isQualified">
+        <view class="qualified" size="mini" style="color:{{item.sfhg?'#FFB800':''}}">合格</view>
+        <view class="unQualified" size="mini" style="color:{{item.sfhg?'':'#FFB800'}}">不合格</view>
+      </view>
+    </view>
+
+
+    <view id="dqxn">电气性能</view>
+    <view class="xnItems" wx:for="{{dqxnList}}" wx:key="{{item.id}}">
+      <view class="condition">{{item.dqxn}}</view>
+      <view class="isQualified">
+        <view class="qualified" size="mini" style="background-color:{{item.sfhg?'#FFB800':''}}">合格</view>
+        <view class="unQualified" size="mini" style="background-color:{{item.sfhg?'':'#FFB800'}}">不合格</view>
+      </view>
+    </view>
+
+    <view id="qt">其他
+    </view>
+  </view>
+</view>

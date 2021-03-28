@@ -1,0 +1,35 @@
+{
+  "setting": {},
+  "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "name": "pages/login/login",
+          "pathName": "pages/login/login",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "test/test",
+          "pathName": "test/test",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/dzqm/dzqm",
+          "pathName": "pages/dzqm/dzqm",
+          "scene": null
+        }
+      ]
+    }
+  }
+}

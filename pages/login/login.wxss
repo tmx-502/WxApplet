@@ -1,0 +1,41 @@
+/* pages/login/login.wxss */
+.container {
+  width: 100%;
+  background-color: #D43C33;
+}
+
+.wrapper {
+  width: 100%;
+  margin-top: -100rpx;
+}
+
+.wellcome {
+  padding-left: 7%;
+  font-size: 50rpx;
+  color: #fff;
+  margin-bottom: 150rpx;
+}
+
+.input-content input {
+  font-size: 30rpx;
+  text-align: center;
+  width: 80%;
+  margin: 80rpx auto;
+  line-height: 60rpx;
+  height: 60rpx;
+  border-radius: 15rpx;
+  font-weight: 500;
+  background-color: #fff;
+}
+
+.confirm-btn {
+  width: 80%;
+  margin-top: 280rpx;
+}
+
+.forget-section,
+.register-section text {
+  margin: 30rpx 0;
+  color: #C4D9F7;
+  text-align: center;
+}

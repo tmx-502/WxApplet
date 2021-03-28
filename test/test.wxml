@@ -1,0 +1,102 @@
+<!--test/test.wxml-->
+<form class="wrap" bindsubmit="fromSubmit">
+  <text class="title">{{headline}}</text>
+  <view class="Tab_header">
+    <view> <text>检验依据:</text><input name="jyyj" /></view>
+    <view> <text>检验日期:</text>
+      <picker mode="date" value="{{date}}" bindchange="bindDateChange">
+        <input name="jyrq" value="{{date}}" disabled /></picker>
+    </view>
+    <view> <text>供货单位:</text><input name="ghdw" /></view>
+    <view> <text>采购员:</text><input name="cgy" /></view>
+    <view> <text>检验数量:</text><input name="jysl" type="number" /></view>
+    <view> <text>合格数量:</text><input name="hgsl" type="number" /></view>
+  </view>
+  <view class="Tab_content">
+
+    <!-- 产品外观 -->
+    <view class="cpwg" bindtap="cpwgClick">
+      <text>产品外观</text>
+      <image class="iconfont icon-jiantou {{cpwgClickBtn ?'iconAnimation':''}}"></image>
+    </view>
+    <view class="wgItems" wx:for="{{cpwgClickBtn?cpwgList:''}}" wx:key="*this">
+      <view always-embed class="condition">{{item.cpwg}}</view>
+      <view class="isQualified">
+        <view id="cpwg {{item.id}} Y" bindtap="bhgpz" class="qualified" size="mini"
+          style="color:{{item.sfbhg?'':'#FFB800'}}">
+          合格
+        </view>
+        <view id="cpwg {{item.id}} N" bindtap="bhgpz" class="unQualified" size="mini"
+          style="color:{{item.sfbhg?'#FFB800':''}}">
+          不合格</view>
+      </view>
+    </view>
+
+    <!-- 电气性能 -->
+    <view class="dqxn" bindtap="dqxnClick">
+      <text>电气性能</text>
+      <image class="iconfont icon-jiantou {{dqxnClickBtn ?'iconAnimation':''}}"></image>
+    </view>
+    <view class="xnItems" wx:for="{{dqxnClickBtn ?dqxnList:''}}" wx:key="{{item.id}}">
+      <view class="condition">{{item.dqxn}}</view>
+      <view class="isQualified">
+        <view id="dqxn {{item.id}} Y" bindtap="bhgpz" class="qualified" size="mini"
+          style="color:{{item.sfbhg?'':'#FFB800'}}">
+          合格
+        </view>
+        <view id="dqxn {{item.id}} N" bindtap="bhgpz" class="unQualified" size="mini"
+          style="color:{{item.sfbhg?'#FFB800':''}}">
+          不合格</view>
+      </view>
+    </view>
+
+    <!-- 其他 -->
+    <view class="qt" bindtap="qtClick"><text>其他</text>
+      <image class="iconfont icon-jiantou {{qtClickBtn ?'iconAnimation':''}}"></image>
+    </view>
+    <view>
+      <view class="qtItems" wx:for="{{qtClickBtn?qtList:''}}" wx:key="{{item.id}}">
+        <input class="condition">{{item.xn}}</input>
+        <view class="isQualified">
+          <view id="qt {{item.id}} Y" bindtap="bhgpz" class="qualified" size="mini"
+            style="color:{{item.sfbhg?'':'#FFB800'}}">
+            合格
+          </view>
+          <view id="qt {{item.id}} N" bindtap="bhgpz" class="unQualified" size="mini"
+            style="color:{{item.sfbhg?'#FFB800':''}}">
+            不合格</view>
+        </view>
+      </view>
+      <button hidden="{{qtClickBtn?flase:true}}" plain bindtap="qtListAdd">＋</button>
+    </view>
+  </view>
+  <view class="footer">
+    <view class="pdyj">
+      <text>综合判定意见</text>
+      <radio-group name="pdyj">
+        <radio value="合格">合格</radio>
+        <radio value="不合格">不合格</radio>
+        <radio value="退货">退货</radio>
+        <radio value="换货">换货</radio>
+        <radio value="让步接收">让步接收</radio>
+      </radio-group>
+    </view>
+    <view class="qz">
+      <text>检验员(签字):</text>
+      <image src="{{jyyqzImgUrl}}"></image>
+      <view>
+        <button id="jyyqz" bindtap="qzClick" plain size="mini" type="primary">手写签名</button>
+
+      </view>
+    </view>
+    <view class="qz">
+      <text>不合格处置审批人(签字):</text>
+      <image src="{{bhgqzImgUrl}}"></image>
+      <view>
+        <button id="bhgqz" bindtap="qzClick" plain size="mini" type="primary">手写签名</button>
+
+      </view>
+    </view>
+  </view>
+  <button form-type="submit" type="primary">提交</button>
+</form>

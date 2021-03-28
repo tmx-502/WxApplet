@@ -1,0 +1,64 @@
+/* components/TestItems/testItems.wxss */
+/* test/test.wxss */
+
+
+.title {
+  display: flex;
+  justify-content: center;
+}
+
+.Tab_header view {
+  width: 100%;
+  display: flex;
+}
+
+.Tab_header view text {
+  color: #01AAED;
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  line-height: 71rpx;
+}
+
+.Tab_header view input {
+  border-bottom: 1px solid black;
+  width: 80%;
+  height: 70rpx;
+}
+
+/* 检验记录 */
+#cpwg,
+#dqxn,
+#qt {
+  width: 100%;
+  text-align: center;
+}
+
+.isQualified {
+  display: flex;
+  width: 30%;
+}
+
+.isQualified view {
+  width: 120rpx;
+  background-color: #1E9FFF;
+  height: 60rpx;
+  margin-right: 10rpx;
+  border-radius: 10rpx;
+  text-align: center;
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #fff;
+  line-height: 60rpx;
+}
+
+.wgItems,
+.xnItems,
+.qtItems {
+  display: flex;
+  margin: 10rpx;
+}
+
+.condition {
+  width: 70%;
+}
