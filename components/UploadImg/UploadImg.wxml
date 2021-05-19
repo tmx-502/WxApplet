@@ -1,0 +1,15 @@
+<mp-icon bindtap="showView" class="uploadimg" style="display:{{showIcon?'block':'none'}}" color='#01AAED' icon='share'
+  size='40'>
+</mp-icon>
+<view class="uploadView" hidden="{{showView}}">
+  <scroll-view scroll-y>
+    <view wx:for="{{ImgList}}" wx:for-index="index">
+      <image id='{{index}}' bindtap="tapEvent" src="{{item.RecordImg}}"></image>
+      <view>
+        <text wx:if="{{item.Status=='1'}}">上传成功</text>
+        <text wx:elif="{{item.Status==undefined}}">等待上传</text>
+        <text wx:else>{{item.Status}}</text>
+      </view>
+    </view>
+  </scroll-view>
+</view>

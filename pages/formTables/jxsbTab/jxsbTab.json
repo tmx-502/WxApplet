@@ -1,0 +1,12 @@
+{
+  "usingComponents": {
+    "UploadImg": "/components/UploadImg/UploadImg",
+    "QMComponent": "/components/QMComponent/QMComponent",
+    "CheckItem": "/components/CheckItem/CheckItem",
+    "mp-icon": "weui-miniprogram/icon/icon",
+    "i-swipeout": "/dist/swipeout/index",
+    "i-cell": "/dist/cell/index",
+    "i-drawer": "/dist/drawer/index",
+    "i-badge": "/dist/badge/index"
+  }
+}

@@ -1,0 +1,52 @@
+<i-tabs fixed current="{{ current_scroll }}" scroll bindchange="handleChangeScroll">
+  <i-tab wx:for="{{tabs}}" key="{{index}}" title="{{item}}"></i-tab>
+</i-tabs>
+
+<swiper bindchange="handleChangeScroll" current="{{current_scroll}}">
+  <swiper-item>
+    <scroll-view enhanced binddragging="latestScroll" id="latest" style="height:100%" scroll-y>
+      <view class="i-sticky-demo">
+        <i-sticky scrollTop="{{scrollTop}}">
+          <i-sticky-item i-class="i-sticky-demo-title" wx:for="{{lately}}">
+            <view slot="title">
+              {{item.time}}
+            </view>
+            <view slot="content" wx:for="{{item.items}}" wx:for-item='it'>
+              <view bindtap="chooseItem" id="{{it.Bid}},{{it.Cid}},{{it.Ccontent}}" class="i-sticky-demo-item">
+                {{it.Ccontent}}</view>
+            </view>
+          </i-sticky-item>
+
+          <view class="tips">没有更多了</view>
+        </i-sticky>
+      </view>
+    </scroll-view>
+  </swiper-item>
+
+
+  <swiper-item wx:for="{{formList}}" wx:for-index="sub" wx:key="{{sub}}" wx:for-item="items">
+    <view class="i-index-demo">
+      <i-index height="100%">
+        <i-index-item wx:for="{{formList[sub]}}" wx:for-index="index" wx:key="{{index}}" wx:for-item="item"
+          name="{{item.key}}">
+          <view bindtap="chooseItem" id="{{it.Bid}},{{it.Cid}},{{it.Ccontent}}" class="i-index-demo-item"
+            wx:for="{{item.list}}" wx:for-index="in" wx:key="{{in}}" wx:for-item="it">
+            {{it.Ccontent}}
+          </view>
+        </i-index-item>
+      </i-index>
+    </view>
+  </swiper-item>
+
+</swiper>
+
+<UploadImg></UploadImg>
+
+
+
+
+<!-- <view wx:for="{{formData}}" wx:for-index="index">
+  <view id="{{index}}" bindtap="toFormList">
+    <text>{{item.headline}}</text>
+  </view>
+</view> -->

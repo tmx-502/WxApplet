@@ -1,0 +1,29 @@
+/* components/QMComponent/QMComponent.wxss */
+.wrap {
+  display: flex;
+  margin: 0 30rpx 16rpx 30rpx;
+}
+
+.wrap text {
+  width: 200rpx;
+  margin-left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #393D49;
+}
+
+.wrap view {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+
+
+.wrap image {
+  flex: 1;
+  height: 90rpx;
+}

@@ -1,0 +1,42 @@
+/* pages/entry/entry.wxss */
+
+page {
+  width: 100%;
+  height: 100%;
+}
+
+swiper {
+  margin-top: 84rpx;
+  height: 100%;
+}
+
+
+scroll-view ::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+  display: none;
+}
+
+.i-sticky-demo-item,
+.i-index-demo-item {
+  padding: 20rpx;
+  border-bottom: #ddd solid 1rpx;
+  font-size: 30rpx;
+}
+
+i-sticky .tips {
+  width: 100%;
+  font-size: 28rpx;
+  color: #bbbec4;
+  text-align: center;
+}
+
+.i-index-item-header {
+  font-size: 26rpx !important;
+}
+
+.i-index-demo {
+  width: 100%;
+  height: 100%;
+}

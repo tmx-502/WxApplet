@@ -1,0 +1,234 @@
+<!--电气类成品检验规范及检验记录-->
+
+<form class="wrapper" hidden="{{fromHidden}}" bindsubmit="fromSubmit">
+  <text class="title">{{headline}}</text>
+  <view class="Tab_header">
+    <view> <text>报检人员:</text><input name="报检人员" /></view>
+    <view> <text>质检人员:</text><input name="质检人员" /></view>
+    <view> <text>生产编号:</text><input name="生产编号" /></view>
+  </view>
+  <view class="Tab_content">
+    <CheckItem itemName='外观' itemList='{{wgList}}' sfQM='true' id="QM"></CheckItem>
+    <CheckItem itemName='电气' itemList='{{dqList}}' sfQM='true' id="QM"></CheckItem>
+  </view>
+  <view class="Tab_foot">
+    <view class="result">
+      <text class="title">检验结果</text>
+      <textarea show-confirm-bar="{{false}}" cursor-spacing='16' maxlength='-1' auto-height></textarea>
+      <QMComponent id="QM" itemName='质检员签字' itemId='检验结果签名'></QMComponent>
+    </view>
+    <view class="result">
+      <text class="title">不合格项描述</text>
+      <textarea show-confirm-bar="{{false}}" cursor-spacing='16' maxlength='-1' auto-height></textarea>
+      <QMComponent id="QM" itemName='质检员签字' itemId='不合格项签名'></QMComponent>
+    </view>
+    <view class="result">
+      <text class="title">处理方法</text>
+      <textarea show-confirm-bar="{{false}}" cursor-spacing='16' maxlength='-1' auto-height></textarea>
+      <QMComponent id="QM" itemName='质检员签字' itemId='处理方法签名'></QMComponent>
+    </view>
+  </view><button form-type="submit" type="primary">提交</button>
+</form>
+
+<button bindtap="show" plain>载入</button>
+<page-container show="{{show}}" bindenter="onEnter" position="right" duration="{{duration}}"
+   bindleave="leave">
+  <button type="primary" bindtap="exit" plain>推出</button>
+  <view class="table">
+    <mp-row>
+      <mp-col span="{{4}}">
+        <view>
+          <view class="col">技术指标
+          </view>
+        </view>
+        <view class="col he-5">回零误差mm
+        </view>
+        <view class="col he-5">位移同步性mm
+        </view>
+        <view class="col he-6">滑板作用力N
+        </view>
+        <view class="col he-2">滑板行程mm
+        </view>
+      </mp-col>
+      <mp-col span="{{16}}">
+        <view>
+          <view class="col">技术数据
+          </view>
+        </view>
+        <mp-col span="{{6}}">
+          <view>
+            <view class="col">移动条件
+            </view>
+            <view class="col">向内5mm
+            </view>
+            <view class="col">向外5mm
+            </view>
+            <view class="col">向内0.2mm
+            </view>
+            <view class="col">向外0.2mm
+            </view>
+          </view>
+          <view>
+            <view class="col">测试点mm</view>
+            <view class="col">左板内推</view>
+            <view class="col">左板外推</view>
+            <view class="col">右板内推</view>
+            <view class="col">右板外推</view>
+          </view>
+          <view>
+            <view class="col he-2">位移量mm</view>
+            <mp-col span="{{8}}">
+              <view class="col he-2">0.1</view>
+              <view class="col he-2">5</view>
+            </mp-col>
+            <mp-col span="{{16}}">
+              <view class="col">向内</view>
+              <view class="col">向外</view>
+              <view class="col">向内</view>
+              <view class="col">向外</view>
+            </mp-col>
+          </view>
+          <view class="col">向内</view>
+          <view class="col">向外</view>
+        </mp-col>
+        <mp-col span="{{6}}">
+          <view>
+            <view class="col">1次
+            </view>
+            <view class="col"><input></input>
+            </view>
+            <view class="col"><input></input>
+            </view>
+            <view class="col"><input></input>
+            </view>
+            <view class="col"><input></input>
+            </view>
+          </view>
+          <view>
+            <view class="col">3
+            </view>
+            <view class="col"><input></input>
+            </view>
+            <view class="col"><input></input>
+            </view>
+            <view class="col"><input></input>
+            </view>
+            <view class="col"><input></input>
+            </view>
+          </view>
+
+        </mp-col>
+        <mp-col span="{{6}}">
+          <view>
+            <view class="col">2次
+            </view>
+            <view class="col"><input></input>
+            </view>
+            <view class="col"><input></input>
+            </view>
+            <view class="col"><input></input>
+            </view>
+            <view class="col"><input></input>
+            </view>
+          </view>
+          <view>
+            <view class="col">7
+            </view>
+            <view class="col"><input></input>
+            </view>
+            <view class="col"><input></input>
+            </view>
+            <view class="col"><input></input>
+            </view>
+            <view class="col"><input></input>
+            </view>
+          </view>
+        </mp-col>
+        <mp-col span="{{6}}">
+          <view>
+            <view class="col">最大偏移值mm
+            </view>
+            <view class="col"><input></input>
+            </view>
+            <view class="col"><input></input>
+            </view>
+            <view class="col"><input></input>
+            </view>
+            <view class="col"><input></input>
+            </view>
+          </view>
+          <view>
+            <view class="col">最大偏移值mm
+            </view>
+            <view class="col"><input></input>
+            </view>
+            <view class="col"><input></input>
+            </view>
+            <view class="col"><input></input>
+            </view>
+            <view class="col"><input></input>
+            </view>
+          </view>
+        </mp-col>
+        <mp-col span="{{12}}">
+          <view class="col">测力计示值N
+          </view>
+          <mp-col span="{{12}}">
+            <view class="col">一次
+            </view>
+            <view class="col"><input></input>
+            </view>
+            <view class="col"><input></input>
+            </view>
+            <view class="col"><input></input>
+            </view>
+            <view class="col"><input></input>
+            </view>
+          </mp-col>
+          <mp-col span="{{12}}">
+            <view class="col">两次
+            </view>
+            <view class="col"><input></input>
+            </view>
+            <view class="col"><input></input>
+            </view>
+            <view class="col"><input></input>
+            </view>
+            <view class="col"><input></input>
+            </view>
+          </mp-col>
+        </mp-col>
+        <mp-col span='18'>
+          <view class="col"><input></input>
+          </view>
+          <view class="col"><input></input>
+          </view>
+        </mp-col>
+        <view>
+          <view class="col he-2">最大作用力N
+          </view>
+          <view class="col"><input></input>
+          </view>
+          <view class="col"><input></input>
+          </view>
+          <view class="col"><input></input>
+          </view>
+          <view class="col"><input></input>
+          </view>
+        </view>
+      </mp-col>
+      <mp-col span="{{4}}">
+
+        <view class="col">技术标准</view>
+        <view class="col he-3">不超过±0.05mm
+        </view>
+        <view class="col he-2">不超过±0.03mm
+        </view>
+        <view class="col he-5">不超过0.05mm</view>
+        <view class="col he-4">不超过50N</view>
+        <view class="col he-2">不超过100N</view>
+        <view class="col he-2">12～12.5mm</view>
+      </mp-col>
+    </mp-row>
+  </view>
+</page-container>

@@ -1,0 +1,133 @@
+<!-- 板卡进货检验记录表 -->
+<form class="wrapper" bindsubmit="fromSubmit">
+  <text class="title">{{options.Ccontent}}</text>
+  <view class="Tab_header">
+    <view> <text>设备编号:</text><input name="{{list[0][6].ID}}" value="{{initData[0].RecordNo}}" disabled />
+    </view>
+    <view> <text>{{list[0][0].Item}}:</text>
+      <picker id="jyyj" range="{{presets.jyyj}}" bindchange="bindValueChange" bindlongpress="bindValueChange"
+        disabled="{{islongpress.jyyj}}">
+        <input name="{{list[0][0].ID}}" value="{{jyyj?presets.jyyj[jyyj]:list[0][0].Evl}}"
+          disabled="{{!islongpress.jyyj}}" /></picker>
+    </view>
+    <view> <text>{{list[0][1].Item}}:</text>
+      <picker id="jyrq" mode="date" value="{{date}}" bindchange="bindValueChange">
+        <input name="{{list[0][1].ID}}" value="{{jyrq?jyrq:list[0][1].Evl}}" disabled /></picker>
+    </view>
+
+    <view> <text>{{list[0][2].Item}}:</text>
+      <picker id="ghdw" range="{{presets.ghdw}}" bindchange="bindValueChange" bindlongpress="bindValueChange"
+        disabled="{{islongpress.ghdw}}">
+        <input name="{{list[0][2].ID}}" value="{{ghdw?presets.ghdw[ghdw]:list[0][2].Evl}}"
+          disabled="{{!islongpress.ghdw}}" /></picker>
+    </view>
+    <view> <text>{{list[0][3].Item}}:</text>
+      <picker id="cgy" range="{{presets.cgy}}" bindchange="bindValueChange" bindlongpress="bindValueChange"
+        disabled="{{islongpress.cgy}}">
+        <input name="{{list[0][3].ID}}" value="{{cgy ?presets.cgy[cgy]:list[0][3].Evl}}"
+          disabled="{{!islongpress.cgy}}" /></picker>
+    </view>
+    <view> <text>{{list[0][4].Item}}:</text><input name="{{list[0][4].ID}}"
+        value="{{options.isQuery?list[0][4].Evl:''}}" disabled="{{isDisabled}}" type="number" /></view>
+    <view> <text>{{list[0][5].Item}}:</text><input name="{{list[0][5].ID}}"
+        value="{{options.isQuery?list[0][5].Evl:''}}" disabled="{{isDisabled}}" type="number" /></view>
+  </view>
+  <view class="Tab_content">
+    <CheckItem id='CheckItem' itemName='{{initData[1].Dcontent}}' itemList="{{list[1]}}">
+    </CheckItem>
+    <CheckItem id='CheckItem' itemName='{{initData[2].Dcontent}}' itemList="{{list[2]}}">
+    </CheckItem>
+    <!-- 其他 -->
+    <view class="qt" bindtap="qtClick"><text>{{initData[3].Dcontent}}</text>
+      <mp-icon icon="arrow" size="15" extClass="{{qtClickBtn ?'iconAnimation':''}}"></mp-icon>
+    </view>
+    <view>
+      <view class="qtItems" wx:for="{{qtClickBtn?list[3]:''}}" wx:for-index="index" wx:key="{{item.Id}}">
+        <view class="i-swipeout-demo" hidden="{{item.Item==''&&!item.isAdd}}">
+          <i-swipeout i-class="i-swipeout-demo-item" operateWidth="{{240}}">
+            <view slot="content">
+              <i-cell i-class="i-cell-padding">
+                <text>{{index+1}}.</text>
+                <textarea id="{{index}}" show-confirm-bar="{{false}}" bindlinechange="linechange" cursor-spacing='16'
+                  maxlength='-1' auto-height value="{{item.Item}}" bindblur="input_qt">
+                  <!-- style="height:{{(textareaheight[index]?textareaheight[index]:18)/18*40}}rpx" -->
+                {{item.xn}}</textarea>
+                <view style="display:inline;position:relative; bottom:{{textareaheight[index]-8}}rpx ">
+                  <mp-icon class="isTrueIcon" icon="{{item.RecordEvl?'close':'done'}}" size="22"></mp-icon>
+                </view>
+              </i-cell>
+            </view>
+            <!-- <view class="isQualified">
+          <view id="{{item.id}} Y" bindtap="bhgpz" class="qualified" size="mini"
+            style="color:{{item.sfbhg?'':'#FFB800'}}">
+            合格
+          </view>
+          <view id="{{item.id}} N" bindtap="bhgpz" class="unQualified" size="mini"
+            style="color:{{item.sfbhg?'#FFB800':''}}">
+            不合格</view>
+        </view> -->
+            <view slot="button" class="i-swipeout-demo-button-group">
+              <view id="{{index}},Y,{{item.ID}}" bindtap="bhgpz" style="color:{{item.RecordEvl?'':'#FFB800'}}"
+                class="i-swipeout-demo-button">合格</view>
+              <view id="{{index}},N,{{item.ID}}" bindtap="bhgpz" style="color:{{item.RecordEvl?'#FFB800':''}}"
+                class="i-swipeout-demo-button">不合格</view>
+              <view class="i-swipeout-demo-button" id="{{index}},{{item.ID}}" bindtap="bindPreview">预览</view>
+              <view class="i-swipeout-demo-button" id="{{index}}" bindtap="delete_qt">删除</view>
+            </view>
+          </i-swipeout>
+        </view>
+      </view>
+
+      <button hidden="{{qtClickBtn?flase:true}}" plain bindtap="qtListAdd">
+        <mp-icon icon="add"></mp-icon>
+      </button>
+    </view>
+  </view>
+  <view class="footer">
+    <view class="pdyj">
+      <text>综合判定</text>
+      <radio-group id='zhpd' bindchange="bindValueChange" name="{{list[4][0].ID}}">
+        <radio disabled="{{isDisabled}}" checked="{{list[4][0].Evl=='合格'}}" value="合格">合格</radio>
+        <radio disabled="{{isDisabled}}" checked="{{list[4][0].Evl=='不合格'}}" value="不合格">不合格</radio>
+      </radio-group>
+    </view>
+    <view class="pdyj">
+      <text>处置意见</text>
+      <radio-group id='czyj' bindchange="bindValueChange" name="{{list[4][1].ID}}">
+        <radio disabled="{{isDisabled}}" checked="{{list[4][1].Evl=='退货'}}" value="退货">退货</radio>
+        <radio disabled="{{isDisabled}}" checked="{{list[4][1].Evl=='换货'}}" value="换货">换货</radio>
+        <radio disabled="{{isDisabled}}" checked="{{list[4][1].Evl=='让步接收'}}" value="让步接收">让步接收</radio>
+      </radio-group>
+    </view>
+    <view class="Tab_header qzr">
+      <view><text>检验员(签字):</text>
+        <picker id="jyyQz" range="{{presets.jyyQz}}" bindchange="bindValueChange" bindlongpress="bindValueChange"
+          disabled="{{islongpress.jyyQz}}">
+          <input name="{{list[4][2].ID}}" value="{{jyyQz ?presets.jyyQz[jyyQz]:list[4][2].Evl}}"
+            disabled="{{!islongpress.jyyQz}}" /></picker>
+      </view>
+      <view><text>不合格处置审批人(签字):</text>
+        <picker id="bhgQz" range="{{presets.bhgQz}}" bindchange="bindValueChange" bindlongpress="bindValueChange"
+          disabled="{{islongpress.bhgQz}}">
+          <input name="{{list[4][3].ID}}" value="{{bhgQz ?presets.bhgQz[bhgQz]:list[4][3].Evl}}"
+            disabled="{{!islongpress.bhgQz}}" /></picker>
+      </view>
+    </view>
+    <!-- <QMComponent id="QM" itemName='检验员(签字)' itemId='jyyQM'></QMComponent>
+    <QMComponent id="QM" itemName='不合格处置审批人(签字)' itemId='bhgQM'></QMComponent> -->
+  </view>
+  <button form-type="submit" type="primary">提交</button>
+</form>
+<i-drawer mode="left" visible="{{showLeft1}}" bind:close="bindPreview">
+  <scroll-view scroll-y class="demo-container">
+    <view bindlongpress="showIco" class="preview" wx:for="{{previewArray}}" wx:for-index="index" wx:key="{{index}}">
+      <mp-icon icon="close2" id="{{index}}" color="#5FB878" bindtap="deleteImg" size="{{showIco? '28':'0'}}"></mp-icon>
+      <image id="{{index}}" bindtap="tapEvent" src="{{item}}"></image>
+    </view>
+    <view hidden="{{previewArray.length>8}}" class="addIcon" id="{{9-previewArray.length}}" bindtap="addImg">
+      <mp-icon icon="add" size="50"></mp-icon>
+    </view>
+    <text>{{previewArray.length}}/9</text>
+  </scroll-view>
+</i-drawer>
+<UploadImg id="upImg"></UploadImg>

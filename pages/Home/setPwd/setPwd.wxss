@@ -1,0 +1,50 @@
+/* pages/Home/setPwd/setPwd.wxss */
+
+
+.thisUser {
+  width: 92vw;
+  margin: 30rpx auto 0;
+  padding-bottom: 25rpx;
+  border-bottom: 1rpx solid #A7A7A7;
+  color: #A7A7A7;
+  font-size: 36rpx;
+}
+
+.thisUser text {
+  margin-right: 5vw;
+}
+.inputPwd {
+  width: 92vw;
+  margin: auto;
+  font-size: 34rpx;
+  margin-top: 30rpx;
+}
+
+.inputPwd view {
+  display: flex;
+  margin-bottom: 25rpx;
+}
+
+.inputPwd view text {
+  width: 25%;
+}
+
+.inputPwd view input {
+  border-bottom: 1rpx solid #A7A7A7;
+  padding: 0 0 10rpx 10rpx;
+  width: 75%;
+}
+
+.inputPwd .tip {
+  font-size: 24rpx;
+  display: block;
+}
+
+.inputPwd .forget {
+  font-size: 26rpx;
+  color: #6A7287;
+}
+
+.bordeColor {
+  border-color: goldenrod;
+}

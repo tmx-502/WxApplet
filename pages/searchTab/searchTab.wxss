@@ -1,0 +1,11 @@
+/* pages/searchTab/searchTab.wxss */
+.weui-cell {
+  padding: 24rpx
+}
+
+mp-cell view {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 28rpx;
+}

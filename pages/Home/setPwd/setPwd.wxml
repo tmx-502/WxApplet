@@ -1,0 +1,11 @@
+<view class="thisUser">
+  <text>当前用户</text><text>13720750173</text>
+</view>
+<view class="inputPwd">
+  <view><text>原密码</text><input password placeholder="填写原密码"></input>
+  </view>
+  <view><text>新密码</text><input password placeholder="填写新密码"> </input></view>
+  <view><text>确认密码</text><input password placeholder="再次填写确认"></input></view>
+  <text class="tip ">密码必须是6-12位的数字、字符组合(不能纯数字)</text>
+  <text class="forget">忘记原密码?</text>
+</view>

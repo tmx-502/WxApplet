@@ -1,0 +1,53 @@
+<view class="wrap">
+  <view class="CheckItem" bindtap="Click">
+    <text>{{itemName}}</text>
+    <mp-icon icon="arrow" size="15" extClass="{{ClickBtn ?'iconAnimation':''}}"></mp-icon>
+  </view>
+  <view class="Items" wx:for="{{ClickBtn?itemList:''}}" wx:for-index='index' wx:key="{{index}}">
+    <view class="i-swipeout-demo">
+      <i-swipeout i-class="i-swipeout-demo-item" operateWidth="{{180}}">
+        <view slot="content">
+          <i-cell i-class="i-cell-padding">
+            <view class="Item">
+              <view class="condition">{{index+1}}. {{item.Item}}</view>
+              <mp-icon class="isTrueIcon" icon="{{item.RecordEvl?'close':'done'}}" size="22"></mp-icon>
+              <!-- <view class="isQualified">
+                <view id="{{item.id}} Y" bindtap="bhgpz" class="qualified" size="mini"
+                  style="color:{{item.sfbhg?'':'#FFB800'}}">
+                  合格
+                </view>
+                <view id="{{item.id}} N" bindtap="bhgpz" class="unQualified" size="mini"
+                  style="color:{{item.sfbhg?'#FFB800':''}}">
+                  不合格</view> 
+              </view>  -->
+            </view>
+          </i-cell>
+        </view>
+        <view slot="button" class="i-swipeout-demo-button-group">
+          <view id="{{index}},Y,{{item.ID}}" bindtap="bhgpz" style="color:{{item.RecordEvl?'':'#FFB800'}}"
+            class="i-swipeout-demo-button">合格</view>
+          <view id="{{index}},N,{{item.ID}}" bindtap="bhgpz" style="color:{{item.RecordEvl?'#FFB800':''}}"
+            class="i-swipeout-demo-button">不合格</view>
+          <view class="i-swipeout-demo-button" id="{{index}},{{item.ID}}" bindtap="bindPreview">预览</view>
+        </view>
+      </i-swipeout>
+    </view>
+  </view>
+  <view class="QM" wx:if="{{sfQM&&ClickBtn}}">
+    <QMComponent id="QM" itemName='自检签字' itemId='{{itemName}}签名'></QMComponent>
+  </view>
+</view>
+
+
+<i-drawer mode="left" visible="{{showLeft1}}" bind:close="bindPreview">
+  <scroll-view scroll-y class="demo-container">
+    <view class="preview" wx:for="{{previewArray}}" wx:for-index="index" wx:key="{{index}}">
+      <mp-icon icon="close2" id="{{index}}" color="#5FB878" bindtap="deleteImg" size="{{showIco? '28':'0'}}"></mp-icon>
+      <image id="{{index}}"  bindtap="tapEvent" bindlongpress="showIco" src="{{item}}"></image>
+    </view>
+    <view hidden="{{previewArray.length>8}}" class="addIcon" id="{{9-previewArray.length}}" bindtap="addImg">
+      <mp-icon icon="add" size="50"></mp-icon>
+    </view>
+    <text>{{previewArray.length}}/9</text>
+  </scroll-view>
+</i-drawer>

@@ -1,0 +1,8 @@
+<!--components/QMComponent/QMComponent.wxml-->
+<View class="wrap">
+  <text>{{itemName}}:</text>
+  <image show-menu-by-longpress id="{{QMImgUrl}}" src="{{QMImgUrl}}"></image>
+  <view>
+    <button show-menu-by-longpress id="{{itemId}}" bindtap="qzClick" plain size="mini" type="primary">手写签名</button>
+  </view>
+</View>

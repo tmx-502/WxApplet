@@ -1,0 +1,157 @@
+<!-- 板卡进货检验记录表 -->
+<form class="wrapper" bindsubmit="fromSubmit">
+  <text class="title">{{options.Ccontent}}</text>
+  <view class="Tab_header" wx:for="{{list[jbxxIndex]}}">
+    <view wx:if="{{item.Item=='检验依据'}}">
+      <text>{{item.Item}}:</text>
+      <picker id="jyyj" range="{{presets.jyyj}}" bindchange="bindValueChange" bindlongpress="bindValueChange"
+        data-id="{{item.ID}}" disabled="{{islongpress.jyyj}}">
+        <input name="{{item.ID}}" value="{{inputValue[item.ID]==undefined?item.Evl:inputValue[item.ID]}}"
+          disabled="{{!islongpress.jyyj}}" />
+      </picker>
+    </view>
+    <view wx:elif="{{item.Item=='检验日期'||item.Item=='日期'}}"> <text>{{item.Item}}:</text>
+      <picker id="jyrq" data-type="date" data-id="{{item.ID}}" mode="date" value="{{date}}"
+        bindchange="bindValueChange">
+        <input name="{{item.ID}}" value="{{inputValue[item.ID]==undefined?item.Evl:inputValue[item.ID]}}" disabled />
+      </picker>
+    </view>
+    <view wx:elif="{{item.Item=='供货单位'}}"> <text>{{item.Item}}:</text>
+      <picker data-id="{{item.ID}}" id="ghdw" range="{{presets.ghdw}}" bindchange="bindValueChange"
+        bindlongpress="bindValueChange" disabled="{{islongpress.ghdw}}">
+        <input name="{{item.ID}}" value="{{inputValue[item.ID]==undefined?item.Evl:inputValue[item.ID]}}"
+          disabled="{{!islongpress.ghdw}}" />
+      </picker>
+    </view>
+    <view wx:elif="{{item.Item=='采购员'}}"> <text>{{item.Item}}:</text>
+      <picker data-id="{{item.ID}}" id="cgy" range="{{presets.cgy}}" bindchange="bindValueChange"
+        bindlongpress="bindValueChange" disabled="{{islongpress.cgy}}">
+        <input name="{{item.ID}}" value="{{inputValue[item.ID]==undefined?item.Evl:inputValue[item.ID]}}"
+          disabled="{{!islongpress.cgy}}" />
+      </picker>
+    </view>
+    <view wx:elif="{{item.Item=='设备编号'}}"> <text>{{item.Item}}:</text><input name="{{item.ID}}"
+        value="{{initData[0].RecordNo}}" disabled />
+    </view>
+    <view wx:else> <text>{{item.Item}}:</text><input name="{{item.ID}}" value="{{options.isQuery?item.Evl:''}}"
+        disabled="{{isDisabled}}" /></view>
+  </view>
+  <view class="Tab_content" wx:for="{{jyxmIndex}}">
+    <view wx:if="{{initData[item].Dcontent=='其他'}}">
+      <view class="qt" bindtap="qtClick"><text>其他</text>
+        <mp-icon icon="arrow" size="15" extClass="{{qtClickBtn ?'iconAnimation':''}}"></mp-icon>
+      </view>
+      <view>
+        <view class="qtItems" wx:for="{{qtClickBtn?list[item]:''}}" wx:for-index="index" wx:for-item="it"
+          wx:key="{{it.Id}}">
+          <view class="i-swipeout-demo" hidden="{{it.Item==''&&!it.isAdd}}">
+            <i-swipeout i-class="i-swipeout-demo-item" operateWidth="{{240}}">
+              <view slot="content">
+                <i-cell i-class="i-cell-padding">
+                  <text>{{index+1}}.</text>
+                  <textarea  id="{{index}}" show-confirm-bar="{{false}}" cursor-spacing='16' maxlength='-1' auto-height
+                    value="{{it.Item}}" bindblur="input_qt">
+                        {{item.xn}}</textarea>
+                  <view style="display:inline;position:relative; bottom:{{textareaheight[index]-8}}rpx ">
+                    <mp-icon class="isTrueIcon" icon="{{it.RecordEvl?'close':'done'}}" size="22"></mp-icon>
+                  </view>
+                </i-cell>
+              </view>
+
+              <view slot="button" class="i-swipeout-demo-button-group">
+                <view id="{{index}},Y,{{it.ID}}" bindtap="bhgpz" style="color:{{it.RecordEvl?'':'#FFB800'}}"
+                  class="i-swipeout-demo-button">合格</view>
+                <view id="{{index}},N,{{it.ID}}" bindtap="bhgpz" style="color:{{it.RecordEvl?'#FFB800':''}}"
+                  class="i-swipeout-demo-button">不合格</view>
+                <view class="i-swipeout-demo-button" id="{{index}},{{it.ID}}" bindtap="bindPreview">预览</view>
+                <view class="i-swipeout-demo-button" id="{{index}}" bindtap="delete_qt">删除</view>
+              </view>
+            </i-swipeout>
+          </view>
+        </view>
+        <button hidden="{{qtClickBtn?flase:true}}" plain bindtap="qtListAdd">
+          <mp-icon icon="add"></mp-icon>
+        </button>
+      </view>
+    </view>
+    <CheckItem wx:else id='CheckItem' itemName='{{initData[item].Dcontent}}' itemList="{{list[item]}}">
+    </CheckItem>
+  </view>
+  <view class="footer" wx:for="{{jgIndex}}">
+    <view wx:for="{{list[item]}}" wx:for-item="it">
+      <view wx:if="{{it.Item=='综合判断'}}" class="pdyj">
+        <text>{{it.Item}}</text>
+        <radio-group id='zhpd' name="{{it.ID}}">
+          <radio disabled="{{isDisabled}}" checked="{{it.Evl=='合格'}}" value="合格">合格</radio>
+          <radio disabled="{{isDisabled}}" checked="{{it.Evl=='不合格'}}" value="不合格">不合格</radio>
+        </radio-group>
+      </view>
+      <view wx:elif="{{it.Item=='处置意见'}}" class="pdyj">
+        <text>{{it.Item}}</text>
+        <radio-group id='czyj' name="{{it.ID}}">
+          <radio disabled="{{isDisabled}}" checked="{{it.Evl=='退货'}}" value="退货">退货</radio>
+          <radio disabled="{{isDisabled}}" checked="{{it.Evl=='换货'}}" value="换货">换货</radio>
+          <radio disabled="{{isDisabled}}" checked="{{it.Evl=='让步接收'}}" value="让步接收">让步接收</radio>
+        </radio-group>
+      </view>
+      <view wx:elif="{{it.isQZ}}" class="Tab_header qzr">
+        <view>
+          <picker id="{{it.pickerID}}" range="{{presets[it.pickerID]}}" bindchange="bindValueChange"
+            bindlongpress="bindValueChange" data-id="{{it.ID}}" data-type="QZ" disabled="{{islongpress[id.pickerID]}}">
+            <view>
+              <text>{{it.Item}}:</text>
+              <input name="{{it.ID}}" value="{{options.isQuery?it.Evl:''}}" disabled="{{!islongpress[it.pickerID]}}" />
+            </view>
+          </picker>
+        </view>
+      </view>
+      <view wx:elif="{{it.isDate}}" class="Tab_header qzr">
+        <view>
+          <picker mode="date" data-id="{{it.ID}}" data-type="date" value="{{date}}" bindchange="bindValueChange">
+            <view>
+              <text>{{it.Item}}:</text><input name="{{it.ID}}" value="{{options.isQuery?it.Evl:''}}" disabled />
+            </view>
+          </picker>
+        </view>
+      </view>
+      <view wx:else class="tab">
+        <view><text>{{it.Item}}:</text>
+          <textarea show-confirm-bar="{{false}}" maxlength='-1' id="{{it.ID}}" data-item="{{it.Item}}"
+            bindblur="bindTextarea" value="{{options.isQuery?it.Evl:''}}" auto-height></textarea>
+        </view>
+      </view>
+
+
+      <!-- <view><text>不合格处置审批人(签字):</text>
+        <picker id="bhgQz" range="{{presets.bhgQz}}" bindchange="bindValueChange" bindlongpress="bindValueChange"
+          disabled="{{islongpress.bhgQz}}">
+          <input name="{{list[4][3].ID}}" value="{{bhgQz ?presets.bhgQz[bhgQz]:list[4][3].Evl}}"
+            disabled="{{!islongpress.bhgQz}}" /></picker>
+      </view> -->
+    </view>
+    <!-- <QMComponent id="QM" itemName='检验员(签字)' itemId='jyyQM'></QMComponent>
+    <QMComponent id="QM" itemName='不合格处置审批人(签字)' itemId='bhgQM'></QMComponent> -->
+  </view>
+
+  <button form-type="submit" type="primary">提交</button>
+</form>
+
+
+
+
+
+
+
+<i-drawer mode="left" visible="{{showLeft1}}" bind:close="bindPreview">
+  <scroll-view scroll-y class="demo-container">
+    <view bindlongpress="showIco" class="preview" wx:for="{{previewArray}}" wx:for-index="index" wx:key="{{index}}">
+      <mp-icon icon="close2" id="{{index}}" color="#5FB878" bindtap="deleteImg" size="{{showIco? '28':'0'}}"></mp-icon>
+      <image id="{{index}}" bindtap="tapEvent" src="{{item}}"></image>
+    </view>
+    <view hidden="{{previewArray.length>8}}" class="addIcon" id="{{9-previewArray.length}}" bindtap="addImg">
+      <mp-icon icon="add" size="50"></mp-icon>
+    </view>
+    <text>{{previewArray.length}}/9</text>
+  </scroll-view>
+</i-drawer>
+<UploadImg id="upImg"></UploadImg>

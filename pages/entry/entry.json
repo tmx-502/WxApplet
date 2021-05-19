@@ -1,0 +1,12 @@
+{
+  "navigationBarTitleText": "质检录入",
+  "usingComponents": {
+    "UploadImg":"/components/UploadImg/UploadImg",
+    "i-tabs": "/dist/tabs/index",
+    "i-tab": "/dist/tab/index",
+    "i-index": "/dist/index/index",
+    "i-index-item": "/dist/index-item/index",
+    "i-sticky": "/dist/sticky/index",
+    "i-sticky-item": "/dist/sticky-item/index"
+  }
+}

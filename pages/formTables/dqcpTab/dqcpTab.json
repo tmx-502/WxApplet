@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "QMComponent": "/components/QMComponent/QMComponent",
+    "CheckItem": "/components/CheckItem/CheckItem",
+    "mp-col": "@miniprogram-component-plus/col",
+    "mp-row": "@miniprogram-component-plus/row"
+  }
+}

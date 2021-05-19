@@ -1,0 +1,11 @@
+{
+  "component": true,
+  "usingComponents": {
+    "mp-icon": "weui-miniprogram/icon/icon",
+    "QMComponent": "/components/QMComponent/QMComponent",
+    "i-swipeout": "../../dist/swipeout/index",
+    "i-cell": "../../dist/cell/index",
+    "i-drawer": "../../dist/drawer/index",
+    "i-badge": "../../dist/badge/index"
+  }
+}
